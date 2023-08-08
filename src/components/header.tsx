@@ -7,6 +7,7 @@ interface IHeaderProps {}
 import { Saira_Stencil_One } from "next/font/google";
 import { PrimaryInputWSearchIcon } from "./primary-input";
 import { CartControl } from "./cart-control";
+import { useFilter } from "@/hooks/useFilter";
 
 const sairaStencil = Saira_Stencil_One({
     weight: ["400"],
@@ -35,11 +36,13 @@ export const Logo = styled.a`
 `;
 
 export function Header(props: IHeaderProps) {
+    const { setSearch, search } = useFilter();
+    
     return (
         <TagHeader>
             <Logo className={sairaStencil.className}>Capputeeno</Logo>
             <div>
-                <PrimaryInputWSearchIcon placeholder="Teste" />
+                <PrimaryInputWSearchIcon value={search} handleChange={setSearch} placeholder="Teste" />
                 <CartControl />
             </div>
         </TagHeader>
